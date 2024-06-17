@@ -1,7 +1,27 @@
+import { Search } from "lucide-react";
+
+import { RegionSelect } from "./region-select";
+import { Input } from "./ui/input";
+import { CountryCards } from "./country-cards";
+
 export function Home() {
   return (
-    <div>
-      <h1>Home!</h1>
+    <div className="container">
+      <div className="flex justify-between py-8">
+        <div className="relative w-80">
+          <Input
+            id="search"
+            className="pl-10"
+            type="text"
+            placeholder="Search for a country"
+          />
+          <span className="absolute start-0 inset-y-0 flex items-center justify-center px-2">
+            <Search className="size-6 text-muted-foreground" />
+          </span>
+        </div>
+        <RegionSelect />
+      </div>
+      <CountryCards />
     </div>
   );
 }
