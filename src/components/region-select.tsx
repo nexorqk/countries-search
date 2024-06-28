@@ -6,32 +6,24 @@ import {
   SelectValue,
 } from "./ui/select";
 
-export const RegionSelect = () => {
-  const regionsArray: { value: string; title: string }[] = [
-    {
-      value: "africa",
-      title: "Africa",
-    },
-    {
-      value: "america",
-      title: "America",
-    },
-    {
-      value: "asia",
-      title: "Asia",
-    },
-    {
-      value: "europe",
-      title: "Europe",
-    },
-    {
-      value: "oceania",
-      title: "Oceania",
-    },
-  ];
+export const RegionSelect = ({
+  regionsArray,
+  currentRegion,
+  setCurrentRegion,
+}: {
+  regionsArray: { value: string; title: string }[];
+  currentRegion: string;
+  setCurrentRegion: (region: string) => void;
+}) => {
+  console.log(currentRegion);
 
   return (
-    <Select>
+    <Select
+      onValueChange={(selectValue: string) => {
+        setCurrentRegion(selectValue);
+      }}
+      value={currentRegion}
+    >
       <SelectTrigger className="w-[200px]">
         <SelectValue placeholder="Filter by region" />
       </SelectTrigger>

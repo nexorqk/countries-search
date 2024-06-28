@@ -1,15 +1,22 @@
 import { Search } from "lucide-react";
 
-import { RegionSelect } from "./region-select";
-import { Input } from "./ui/input";
+import { Input } from "@/components/ui/input";
 import { CountryCards } from "./country-cards";
+import { RegionSelect } from "./region-select";
+import { useState } from "react";
+import { regionsArray } from "@/constants";
 
 export function Home() {
+  const [search, setSearch] = useState("");
+  const [currentRegion, setCurrentRegion] = useState("");
+
   return (
     <div className="container">
       <div className="flex justify-between py-8">
         <div className="relative w-80">
           <Input
+            onChange={(event) => setSearch(event.target.value)}
+            value={search}
             id="search"
             className="pl-10"
             type="text"
@@ -19,9 +26,13 @@ export function Home() {
             <Search className="size-6 text-muted-foreground" />
           </span>
         </div>
-        <RegionSelect />
+        <RegionSelect
+          regionsArray={regionsArray}
+          currentRegion={currentRegion}
+          setCurrentRegion={setCurrentRegion}
+        />
       </div>
-      <CountryCards />
+      <CountryCards searchInput={search} currentRegion={currentRegion} />
     </div>
   );
 }
